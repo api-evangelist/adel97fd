@@ -1,0 +1,234 @@
+generated: '2026-09-07'
+method: probed
+source: https://adelpharm.com/
+name: ADEL well-known + contract discovery probe
+description: >-
+  Negative probe record for ADEL, Inc. (adelpharm.com). ADEL is a clinical-stage
+  biopharmaceutical company developing tau, ApoE4 and beta-2 microglobulin antibodies for
+  Alzheimer's disease; it sells no software product and publishes no developer program. All six
+  first-party hosts sit behind a Korean Cafe24-hosted JavaScript-decryption WAF interstitial
+  ("cupid.js", a slowAES CBC challenge that sets a CUPID cookie and reloads the requested URL
+  with ?ckattempt=1). That interstitial answers HTTP 200 with an identical ~780-byte HTML body to
+  EVERY path, including a randomly-generated negative-control path that cannot exist, so every
+  200 recorded below is a catch-all shell and NOT a document. ZERO documents were retrieved on
+  any host. No WellKnown, SecurityTxt, AgentCard, LLMsTxt, APIsJSON, OpenAPI or
+  VulnerabilityDisclosure pointer is emitted from this probe, and none should ever be emitted
+  from it in a later round.
+
+host_status:
+  - host: adelpharm.com
+    controlled_by_provider: true
+    disposition: waf-challenge-catch-all
+    reachable_https: true
+    ip: 183.111.183.82
+    nameservers: [ns1.cafe24.co.kr, ns2.cafe24.co.kr, ns1.cafe24.com, ns2.cafe24.com]
+    registrar: Whois Corp.
+    domain_created: '2018-05-15'
+    domain_expires: '2031-05-15'
+    note: 'Canonical corporate site. Serves the cupid.js slowAES interstitial to non-browser clients on every path.'
+  - host: www.adelpharm.com
+    controlled_by_provider: true
+    disposition: waf-challenge-catch-all
+    reachable_https: true
+    ip: 183.111.183.82
+    note: 'CNAME to adelpharm.com; identical interstitial.'
+  - host: adelbio.com
+    controlled_by_provider: true
+    disposition: waf-challenge-catch-all
+    reachable_https: true
+    ip: 183.111.183.82
+    registrar: Gabia, Inc.
+    domain_created: '2026-08-28'
+    note: 'Same Cafe24 origin IP and nameservers as adelpharm.com; registered 2026-08-28, ahead of the announced Kosdaq listing. Identical interstitial.'
+  - host: www.adelbio.com
+    controlled_by_provider: true
+    disposition: waf-challenge-catch-all
+    reachable_https: true
+    ip: 183.111.183.82
+  - host: adelbio.co.kr
+    controlled_by_provider: true
+    disposition: waf-challenge-catch-all
+    reachable_https: true
+    ip: 183.111.183.82
+  - host: www.adelbio.co.kr
+    controlled_by_provider: true
+    disposition: waf-challenge-catch-all
+    reachable_https: true
+    ip: 183.111.183.82
+
+hit_count: 0
+probe_count: 120
+soft_200_control: detected
+soft_200_note: >-
+  Every one of the 120 probes returned HTTP 200 with the same cupid.js challenge body. The status
+  code carries no information on these hosts; only the body does, and the body is always the same
+  interstitial.
+path_echo_control: detected
+path_echo_note: >-
+  The negative control /.well-known/adel97fd-negative-control-7c3e91a2.json returned the same
+  200 + interstitial as every real path on all six hosts, so all 120 hits are discarded. The
+  interstitial additionally ECHOES THE REQUESTED PATH back inside its
+  location.href="https://<host><path>?ckattempt=1" line, which makes it a keyword-match trap: a
+  request to /vulnerability-disclosure returns a body literally containing the string
+  "vulnerability", and a control request to /zzz-nonexistent-vulnerability-bug-bounty-9x7 returns
+  the same. probe-security-programs.py was fooled by exactly this and wrote a
+  security/adel97fd-vulnerability-disclosure.yml claiming a disclosure page; it was verified as a
+  path-echo false positive and deleted, and no Security or VulnerabilityDisclosure pointer is
+  wired.
+
+hosts:
+  - host: https://adelpharm.com
+    documents:
+      - {path: '/.well-known/security.txt', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/openid-configuration', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/oauth-authorization-server', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/oauth-protected-resource', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/api-catalog', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/ai-plugin.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/agent-card.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/agent.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/aauth-resource.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/apis.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/apis.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/apis.yml', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/openapi.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/openapi.yaml', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/swagger.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/v1/openapi.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/api-docs', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/llms.txt', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/graphql', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/adel97fd-negative-control-7c3e91a2.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+  - host: https://www.adelpharm.com
+    documents:
+      - {path: '/.well-known/security.txt', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/openid-configuration', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/oauth-authorization-server', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/oauth-protected-resource', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/api-catalog', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/ai-plugin.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/agent-card.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/agent.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/aauth-resource.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/apis.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/apis.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/apis.yml', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/openapi.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/openapi.yaml', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/swagger.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/v1/openapi.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/api-docs', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/llms.txt', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/graphql', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/adel97fd-negative-control-7c3e91a2.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+  - host: https://adelbio.com
+    documents:
+      - {path: '/.well-known/security.txt', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/openid-configuration', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/oauth-authorization-server', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/oauth-protected-resource', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/api-catalog', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/ai-plugin.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/agent-card.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/agent.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/aauth-resource.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/apis.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/apis.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/apis.yml', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/openapi.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/openapi.yaml', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/swagger.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/v1/openapi.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/api-docs', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/llms.txt', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/graphql', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/adel97fd-negative-control-7c3e91a2.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+  - host: https://www.adelbio.com
+    documents:
+      - {path: '/.well-known/security.txt', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/openid-configuration', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/oauth-authorization-server', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/oauth-protected-resource', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/api-catalog', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/ai-plugin.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/agent-card.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/agent.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/aauth-resource.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/apis.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/apis.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/apis.yml', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/openapi.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/openapi.yaml', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/swagger.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/v1/openapi.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/api-docs', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/llms.txt', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/graphql', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/adel97fd-negative-control-7c3e91a2.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+  - host: https://adelbio.co.kr
+    documents:
+      - {path: '/.well-known/security.txt', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/openid-configuration', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/oauth-authorization-server', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/oauth-protected-resource', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/api-catalog', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/ai-plugin.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/agent-card.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/agent.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/aauth-resource.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/apis.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/apis.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/apis.yml', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/openapi.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/openapi.yaml', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/swagger.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/v1/openapi.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/api-docs', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/llms.txt', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/graphql', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/adel97fd-negative-control-7c3e91a2.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+  - host: https://www.adelbio.co.kr
+    documents:
+      - {path: '/.well-known/security.txt', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/openid-configuration', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/oauth-authorization-server', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/oauth-protected-resource', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/api-catalog', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/ai-plugin.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/agent-card.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/agent.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/aauth-resource.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/apis.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/apis.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/apis.yml', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/openapi.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/openapi.yaml', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/swagger.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/v1/openapi.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/api-docs', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/llms.txt', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/graphql', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+      - {path: '/.well-known/adel97fd-negative-control-7c3e91a2.json', status: 200, file: null, note: 'cupid.js WAF interstitial, not a document'}
+
+contract_discovery:
+  openapi_rest: {result: miss, note: 'Probed /openapi.json, /openapi.yaml, /swagger.json, /v1/openapi.json and /api-docs on all six first-party hosts. No API host or baseURL has ever been recorded for ADEL and no api./developer./docs. subdomain resolves. Every candidate returned the WAF interstitial.'}
+  graphql_introspection: {result: miss, note: 'GET/POST /graphql on all six hosts returns the WAF interstitial, never a GraphQL error envelope. No GraphQL surface is documented anywhere.'}
+  mcp_tools_list: {result: not-applicable, note: 'No MCP endpoint published, referenced or discoverable.'}
+  a2a_agent_card: {result: miss, note: 'Probed /.well-known/agent-card.json AND the legacy /.well-known/agent.json on all six hosts. Each returned 200 with the WAF interstitial HTML, which the pipeline contract explicitly rejects as the dominant false positive. Per the contract no a2a/ artifact is written and no AgentCard pointer is emitted.'}
+  ogc: {result: not-applicable, note: 'No geospatial evidence anywhere in the record; no WMS/WFS/WCS/WMTS/CSW or "OGC API" prose.'}
+  wsdl: {result: miss, note: 'No ?wsdl / ?singleWsdl surface and no enterprise/integration docs section to host one.'}
+  grpc_protobuf: {result: miss, note: 'No GitHub organization: api.github.com/orgs/adel, /adelpharm, /adelbio and /adel-inc all 404, and a GitHub user search for "adel pharm" returns one unrelated individual account. No buf.build presence.'}
+  packages: {result: not-applicable, note: 'A therapeutics developer with no software product ships no client libraries; no first-party package exists on npm, PyPI, Maven Central, NuGet, pkg.go.dev, RubyGems, Packagist or crates.io.'}
+  developer_surface: {result: 'no-developer-program', note: 'The adelpharm.com site is a corporate marketing surface — company/about, pipeline (/en/pipeline/), technology/platform (BTS, ADTAC), news and contact. There is no /docs, /developers, /api, /reference or portal path in the site nav as indexed by public search engines, and none of the company reporting (BioSpace, Fierce Biotech, Korea Biomedical Review, BioSpectrum Asia, PRNewswire, BIO International Convention exhibitor listing) references any developer or data-access program.'}
+
+evidence:
+  - {url: 'https://adelpharm.com/.well-known/security.txt', status: 200, note: 'cupid.js WAF interstitial, 785 bytes, not a security.txt'}
+  - {url: 'https://adelpharm.com/.well-known/agent-card.json', status: 200, note: 'cupid.js WAF interstitial HTML, rejected per contract STEP 0b(4)'}
+  - {url: 'https://adelpharm.com/.well-known/adel97fd-negative-control-7c3e91a2.json', status: 200, note: 'NEGATIVE CONTROL — same 200 + interstitial, so every 200 on this host is discarded'}
+  - {url: 'https://adelpharm.com/openapi.json', status: 200, note: 'cupid.js WAF interstitial, not OpenAPI'}
+  - {url: 'https://adelpharm.com/llms.txt', status: 200, note: 'cupid.js WAF interstitial, not llms.txt'}
+  - {url: 'https://adelpharm.com/zzz-nonexistent-vulnerability-bug-bounty-9x7', status: 200, note: 'Path-echo control proving the keyword-match trap'}
+  - {url: 'https://adelbio.com/.well-known/agent-card.json', status: 200, note: 'Same origin IP 183.111.183.82, same interstitial'}
+  - {url: 'https://api.github.com/orgs/adelpharm', status: 404}
+  - {url: 'https://github.com/adelpharm', status: 404}
+  - {url: 'https://equityzen.com/company/adel97fd/', status: 200, note: 'Harvest source; EquityZen listing titled "Invest In ADEL Stock", industries mis-tagged as Software/AI/Data & Analytics'}

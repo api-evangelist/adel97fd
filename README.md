@@ -1,4 +1,4 @@
-# Adel97fd
+# ADEL, Inc.
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,5 +64,18 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Adel97fd is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
+ADEL, Inc. is a clinical-stage biopharmaceutical company in Seoul, South Korea, spun out of the
+Asan Medical Center / University of Ulsan College of Medicine in 2016. It develops antibody
+therapeutics, diagnostics and delivery platforms for Alzheimer's disease and other
+neurodegenerative conditions — lead candidate ADEL-Y01 (anti-acK280 tau, licensed worldwide to
+Sanofi in December 2025), plus ADEL-Y03, ADEL-Y04, the ADEL-D01 diagnostic antibody, and the BTS
+and ADTAC platforms.
+
+**There is no API surface to profile.** ADEL sells a drug, not software. It publishes no
+developer portal, public API, SDK, webhook catalog or machine-readable specification, and its
+only web presence is the corporate marketing site at https://adelpharm.com/. This profile is a
+factual record of that absence; see `well-known/adel97fd-well-known.yml` for the 120-path
+negative probe across all six first-party hosts.
+
+Harvest source (a third-party secondary-market venue, not an ADEL page):
 - https://equityzen.com/company/adel97fd
